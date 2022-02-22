@@ -1,0 +1,30 @@
+import heapq
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+       
+        freq = {}
+        for item in nums:
+            if (item in freq):
+                freq[item] += 1
+            else:
+                freq[item] = 1
+                
+                
+        for i in freq.keys():
+            freq[i] = -1*(freq[i])
+        
+        li = []
+        for key, val in freq.items():
+            li.append([val,key])
+        
+        heapq.heapify(li)
+        
+        ans = []
+        count = 0
+        for i in range(len(li)):
+            tam = heapq.heappop(li)
+            if count < k:
+                ans.append(tam[1])
+                count+=1
+        return ans
