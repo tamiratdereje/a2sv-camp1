@@ -1,0 +1,26 @@
+import heapq
+
+class KthLargest(object):
+    
+    def __init__(self, k, nums):
+        """
+        :type k: int
+        :type nums: List[int]
+        """
+        self.k = k
+        self.nums = nums
+        heapq.heapify(nums)
+        self.ans = heapq.nlargest(self.k, self.nums)
+        heapq.heapify(self.ans)
+  
+    def add(self, val):
+        """
+        :type val: int
+        :rtype: int   
+        """ 
+        if len(self.ans) < self.k:
+            heapq.heappush(self.ans,val)
+        else:
+            heapq.heappushpop(self.ans,val)       
+        return self.ans[0]
+
