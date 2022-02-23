@@ -1,0 +1,63 @@
+import heapq
+
+class Solution:
+    def __init__(self):
+        self.li = []
+        self.my_set = {}
+        
+
+    def hea(self,Q,arr):
+        j = 0
+        for i in Q:
+            if int(i) == 1:
+                self.add(arr[j])
+                j+=1
+            elif int(i) == 2:
+                self.delete(arr[j])
+                j+=1
+            elif int(i) == 3:
+                self.printval()
+                j+=1
+
+                
+    def add(self,val):
+        heapq.heappush(self.li, int(val))
+        if int(val) not in self.my_set:
+            self.my_set[int(val)]=0
+ 
+    def delete(self, val):
+        self.my_set[int(val)] += 1
+        
+    def printval(self):  
+       
+        while len(self.li)>0 and self.my_set[int(self.li[0])]>0:
+            self.my_set[int(self.li[0])]-=1
+            heapq.heappop(self.li)
+        print(int(self.li[0]))
+       
+    
+Q = input()
+Qu =[]
+arr = []
+li = []
+for i in range(int(Q)):
+    temp = input()
+    
+    temp = temp.split()
+    Qu.append(int(temp[0]))
+    if int(temp[0])==1:
+        arr.append(int(temp[1]))
+    elif int(temp[0]) == 2:
+        arr.append(int(temp[1]))
+    elif int(temp[0]) == 3:
+        arr.append(0)
+        
+      
+    
+# print(Qu)
+# print(arr)
+obj = Solution()
+obj.hea(Qu,arr)
+
+
+    
