@@ -1,0 +1,40 @@
+class Solution(object):
+    def __init__(self):
+        self.ans = []
+    def left(self,nums,index, target):
+        
+        small = index
+        while index >= 0 and nums[index] == target:
+            small = index
+            index -= 1
+        return small  
+    def right(self,nums,index, target):
+        
+        large = index
+        while index <= len(nums)-1 and nums[index] == target:
+            large = index
+            index += 1
+                       
+        return large 
+    
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        first = 0
+        last = len(nums)-1
+        li = []
+        count = 0   
+        while first <= last:
+            mid = first + (last - first)//2
+            if nums[mid] == target:
+                self.ans.append(self.left(nums,mid,target))
+                self.ans.append(self.right(nums,mid,target))                 
+                return self.ans
+            elif nums[mid] < target:
+                first = mid + 1
+            else:
+                last = mid - 1
+        return [-1,-1]
