@@ -1,0 +1,25 @@
+class Solution:   
+    def divid(self, nums, j):
+        suma = 0
+        for i in nums:
+            suma+=math.ceil(i/j)
+        return suma
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:     
+        best = 10**6
+        maxi = nums[0]
+        for i in range(len(nums)):          
+            if nums[i] >= maxi:
+                maxi = nums[i]         
+        first = 1
+        last = maxi
+        while first <= last:        
+            mid = first + (last - first)//2
+            result  = self.divid(nums,mid)
+            if result <= threshold:
+                best = mid    
+                last = mid - 1
+            else:
+                first = mid + 1
+        return best
+    
+  
