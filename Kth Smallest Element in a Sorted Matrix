@@ -1,0 +1,29 @@
+import heapq
+class Solution(object):
+    def kthSmallest(self, nums, k):
+        """
+        :type matrix: List[List[int]]
+        :type k: int
+        :rtype: int
+        
+        
+        """
+        heapq.heapify(nums)
+        li = []
+        heapq.heapify(li)
+        for i in range(len(nums)):
+            for j in range(len(nums[i])):                 
+                li.append(nums[i][j])
+         
+        heapq.heapify(li)
+        count = 0       
+        i=0
+        while True:
+            if k-1 == count:
+                
+                return li[0]   
+            else:
+                heapq.heappop(li)       
+                count +=1       
+       
+ 
