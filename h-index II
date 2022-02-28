@@ -1,0 +1,22 @@
+class Solution(object):
+    def hIndex(self, nums):
+        """
+        :type citations: List[int]
+        :rtype: int
+        
+        """
+
+    
+        hindex = 0
+        first = 0
+        last = len(nums)-1
+        while first <= last:
+            mid = first + (last - first)//2
+            if nums[mid] >= len(nums) - mid:
+                if len(nums) - mid >= hindex:
+                    hindex = len(nums) - mid
+                last = mid - 1
+            else:
+                first = mid + 1
+                
+        return hindex     
