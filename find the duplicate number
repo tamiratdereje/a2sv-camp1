@@ -1,0 +1,44 @@
+class Solution(object):
+    def countNum(self,original,given):
+        count = 0
+        for i in original:
+            if i < given:
+                count+=1
+                continue
+            return count
+            
+    def findDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 2:
+            return nums[0]
+        
+        li = []
+        nums.sort()
+        
+        for i in range(1,len(nums)+1):
+            li.append(i)
+        
+        
+        first = 0
+        last = len(li)- 1
+        
+         
+        while first <= last:
+            
+            mid = first + (last - first)//2  
+            count =  self.countNum(nums,mid)
+            
+            if first == mid:
+                last = mid 
+                     
+            if first == last == mid :
+                return nums[mid]
+            
+            elif count <nums[mid]:             
+                first = mid           
+            
+            elif count >= nums[mid]:          
+                last = mid
