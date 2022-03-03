@@ -35,7 +35,6 @@ class Solution(object):
         ans = -1
         while first <= last:
             mid  = first + (last - first)//2
-            print(mid)
             if self.possible(mid, weights, days):      
                 last = mid - 1
                 ans = mid
